@@ -1,0 +1,38 @@
+cmake_minimum_required(VERSION 3.20)
+
+project(AlienForceClient LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+# ------------ Executable & sources (NO Db.cpp for now) ------------
+add_executable(${PROJECT_NAME}
+    Src/AlienForceClient.cpp
+    Src/Enemy.cpp
+    Src/Player.cpp
+    Src/Projectile.cpp
+    # Src/Db.cpp   <-- leave this commented out until we fix DB later
+)
+
+# ------------ Include directories ------------
+# Adjust if your layout is slightly different.
+target_include_directories(${PROJECT_NAME} PRIVATE
+    ${CMAKE_SOURCE_DIR}/Src         # where Enemy.hpp, Player.hpp, etc likely are
+    ${CMAKE_SOURCE_DIR}/Include     # if you have an Include/ folder
+    "C:/Users/MarcAnthonyJones/Downloads/SFML-3.0.2-windows-vc17-64-bit/SFML-3.0.2/include"
+)
+
+# ------------ SFML 3 via prebuilt package ------------
+# You already set SFML_DIR in CMakePresets.json
+find_package(SFML 3 CONFIG REQUIRED COMPONENTS Graphics Window System)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE
+    SFML::Graphics
+    SFML::Window
+    SFML::System
+)
+
+if (MSVC)
+    target_compile_options(${PROJECT_NAME} PRIVATE /W3)
+endif()

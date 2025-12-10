@@ -1,0 +1,20 @@
+{
+  "version": 4,
+  "configurePresets": [
+    {
+      "name": "x64-debug",
+      "displayName": "x64 Debug (vcpkg)",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/out/build/x64-debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_TOOLCHAIN_FILE": "C:/vcpkg/scripts/buildsystems/vcpkg.cmake",
+        "VCPKG_TARGET_TRIPLET": "x64-windows",
+        "SFML_DIR": "C:/Users/MarcAnthonyJones/Downloads/SFML-3.0.2-windows-vc17-64-bit/SFML-3.0.2/lib/cmake/SFML"
+      }
+    }
+  ],
+  "buildPresets": [
+    { "name": "x64-debug", "configurePreset": "x64-debug" }
+  ]
+}
